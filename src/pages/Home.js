@@ -20,6 +20,13 @@ const Home = (props) => {
                     setAllEmployees(curr => [...curr, ...res.data.results]);
                     setDisplay(curr => [...curr, ...res.data.results]);
                 })
+        } else { // filter display for search
+            //sets display state var to the result of calling filter on allEmployees looking for the value of search
+            setDisplay(() => [...allEmployees.filter(employee => {
+                let nameArray = employee.email.split("@")[0].split("."); // email field uses roman characters, name field may not
+                let name = `${nameArray[0]} ${nameArray[1]}`;
+                return name.indexOf(search) !== -1;
+            })])
         }
     }, [search])
 

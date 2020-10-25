@@ -1,16 +1,11 @@
 import React from "react";
-import { ListItem, List } from "../List";
 import Table from "react-bootstrap/Table";
-// import { useEmployeeContext } from "../../utils/GlobalState";
-// import DeleteBtn from "../DeleteBtn";
-// import { Link } from "react-router-dom";
-const test = [{ _id: 1, name: "test1" }, { _id: 2, name: "test2" }];
 
 const PostsList = ({ display }) => {
   return (
-    <div>
+    <div className="list-overflow-container">
       {display.length ? (
-        <Table striped bordered hover>
+        <Table responsive size="sm" striped bordered hover>
           <thead>
             <tr>
               <th>Image</th>
