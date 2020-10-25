@@ -1,11 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import getEmployeeInfo from './utils/API';
+import API from './utils/API';
 
 function App() {
   //console.log(API);
-  getEmployeeInfo().then(res => console.log(res));
+  API.getEmployeeInfo().then(res => console.log(res));
   return (
     <div className="App">
       <header className="App-header">
