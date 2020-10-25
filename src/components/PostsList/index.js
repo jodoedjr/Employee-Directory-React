@@ -1,35 +1,40 @@
 import React from "react";
 import { ListItem, List } from "../List";
-import { useEmployeeContext } from "../../utils/GlobalState";
+import Table from "react-bootstrap/Table";
+// import { useEmployeeContext } from "../../utils/GlobalState";
 // import DeleteBtn from "../DeleteBtn";
 // import { Link } from "react-router-dom";
-const test = [{_id: 1, name:"test1"}, {_id:2,name:"test2"}];
-let num = 0;
-const PostsList = () => {
-  const [state, dispatch] = useEmployeeContext();
+const test = [{ _id: 1, name: "test1" }, { _id: 2, name: "test2" }];
+
+const PostsList = ({ display }) => {
   return (
     <div>
-      {/* Replace test with the appropriate arrays */}
-      {state.display.length ? (
-        <List>
-          {state.display.map(post => (
-            <ListItem key={post._id}>
-              {num}
-              {/* <Link to={"/posts/" + post._id}>
-                <strong>
-                  {post.title} by {post.author}
-                </strong>
-              </Link> */}
-              {/* <DeleteBtn onClick={() => {}} /> */}
-            </ListItem>
-          ))}
-        </List>
+      {display.length ? (
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>DOB</th>
+            </tr>
+          </thead>
+          <tbody>
+            {display.map((item, index) => (
+              <tr key={index}>
+                <td><img src={item.picture.thumbnail} alt="employee" className="img-responsive"/></td>
+                <td>{item.name.first + " " +item.name.last}</td>
+                <td>{item.phone}</td>
+                <td>{item.email}</td>
+                <td>{item.dob.date.substring(0,10)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       ) : (
-        <h3>You haven't added any posts yet!</h3>
-      )}
-      <div className="mt-5">
-        {/* <Link to="favorites">View favorites</Link> */}
-      </div>
+          <h3>Loading!</h3>
+        )}
     </div>
   );
 };
