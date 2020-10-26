@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 
-const PostsList = ({ display }) => {
+const PostsList = ({ display, handleSortTable}) => {
   return (
     <div className="list-overflow-container">
       {display.length ? (
@@ -9,10 +9,11 @@ const PostsList = ({ display }) => {
           <thead>
             <tr>
               <th>Image</th>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>DOB</th>
+              <th onClick={()=>handleSortTable("email")}>Name</th>
+              {/* sorting by email makes handling names with non-Roman characters */}
+              <th onClick={()=>handleSortTable("phone")}>Phone</th>
+              <th onClick={()=>handleSortTable("email")}>Email</th>
+              <th onClick={()=>handleSortTable("dob")}>DOB</th>
             </tr>
           </thead>
           <tbody>
